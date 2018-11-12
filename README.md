@@ -29,7 +29,7 @@ Its basically just allowing you to to start configuration from your local machin
 * Line 120 - 127: Prompt and SCP aliases if desired
 * Line 133 - 157: SSH into host and run the `Server Config Script`
 
-### Thats the whole script!
+## Thats the whole script!
 
 You could totally build off of this and add expects to automate your own bash scripts!
 
