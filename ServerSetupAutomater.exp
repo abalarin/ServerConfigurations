@@ -1,0 +1,158 @@
+#!/usr/bin/expect -f
+
+# Usage ./ServerSetupAutomater.exp <host_ip> <ssh_user>(defaults to root) <user passwd>
+# Run this script with your ssh 'user' and IP as arguments to auto set the 'IP' and 'user' variables
+
+send "\n ~~~~~~~~~~~ Welcome to the automated Linode setup script! ~~~~~~~~~~~\n\n"
+
+# Disable auto timeout, the following prompts might take some time to read
+set timeout -1
+
+# A simple function for SCP
+proc copyfile { filepath ip user pass} {
+  spawn scp $filepath $user@$ip:~/
+  expect {
+    "assword:" {
+      send "$pass\r"
+      interact
+    }
+    default{
+      interact
+    }
+  }
+}
+
+# Verify if IP was declared in the command line: if not prompt for IP
+set IP [lindex $argv 0]
+if { $IP == "" } {
+  send_user -- "IP to shh and scp: "
+  expect_user -re "(.*)\n"
+  send_user "\n"
+  set IP $expect_out(1,string)
+}
+
+# Get server user from command line -> if none specified, default to root
+set user [lindex $argv 1]
+if {$user == ""} {
+  send_user -- "Enter a username, return for (root): "
+  expect_user -re "(.*)\n"
+  send_user "\n"
+  set user $expect_out(1,string)
+
+  # Check is a username has been provided - default to root
+  if {$user == ""} {
+    set user "root"
+  }
+}
+
+
+# Prompt for a password to ssh and scp
+set rootpasswd [lindex $argv 2]
+if {$rootpasswd == ""} {
+  stty -echo
+  send_user -- "$user@$IP password (return if key/pair auth is already setup): "
+  expect_user -re "(.*)\n"
+  send_user "\n"
+  stty echo
+  set rootpasswd $expect_out(1,string)
+}
+
+# ------ User crediential validator ------
+spawn ssh $user@$IP exit
+set timeout 45
+expect {
+  timeout {
+    puts "\n~~ Uh oh! The connection to $IP timedout... Please check your internet connection and try again. ~~"
+    exit
+  }
+  "assword:" {
+    send "$rootpasswd\r"
+    exp_continue
+  }
+  "yes/no" {
+    send "yes\r"
+    exp_continue
+  }
+  "Permission denied (publickey)" {
+    puts "\n~~ Uh oh! looks like key/pair auth has been enabled ~~"
+    puts "~~ Check if you've disabled login for $user ~~"
+    puts "~~ Check to make sure your public key has been added to /home/$user/.ssh/authorized_keys ~~\n"
+    exit
+  }
+  "ermission denied" {
+    puts "\n ~~ Invalid login credientials: Please run script again with proper credientials. ~~ \n"
+    exit
+  }
+  "timed out" {
+    puts "\n ~~ Not able to tunnel into $IP. Check manager to ensure your server is running. ~~ \n"
+    exit
+  }
+  "lost connection" {
+    puts "\n ~~ Uhoh looks like there was an issue connecting to $IP. Please try again. ~~ \n"
+    exit
+  }
+}
+# ----------- END of Validation -----------
+
+# Lets disbale timeout so user can have lots of time to locate a proper config file
+set timeout -1
+
+# A server configuration script is essential. Lets make sure that we can properly locate and SCP one.
+set found 0;
+set server_config_script [lindex $argv 3]
+
+# Were gonna loop until we've be supplied a valid file
+while { $found != 1} {
+
+  # Check if file exsists
+  if [file exists $server_config_script] {
+    # File exsist -> SCP
+    set running [copyfile "$server_config_script" "$IP" "$user" "$rootpasswd"]
+    set found 1
+
+  } else {
+    # Prompt for a valid file
+    send_user "Please supply a valid path/file of your server config script: ";
+  	expect_user -re "(.*)\n";
+    set server_config_script $expect_out(1,string);
+  }
+}
+
+# Prompt for optional .bash_profile import
+send_user "Enter your .bash path/file for SCP (return to skip)"
+expect_user -re "(.*)\n" {set bash_path $expect_out(1,string)}
+
+# If user enters a username SCP the .bash_profile
+if { $bash_path != "" } {
+  set running [copyfile "$bash_path" "$IP" "$user" "$rootpasswd"]
+}
+
+# Set timeout for 30 sec, incase user falls asleep
+set timeout 30
+
+# SSH into our server and execute our server configuration_script
+spawn ssh "$user@$IP"
+
+expect {
+  timeout {
+    exit 1
+  }
+
+  ":~" {
+    # Lets ensure script is executable & run
+    send "sudo chmod 700 ./$server_config_script && ./$server_config_script\r"
+
+    # We may get promted for a password, after running sudo above
+    # expect {
+    #   timeout { send "\r" }
+    #   "assword" { send "$rootpasswd\r" }
+    # }
+
+    interact
+  }
+
+  "assword" {
+    send "$rootpasswd\r"
+    exp_continue
+  }
+}
