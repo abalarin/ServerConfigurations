@@ -46,7 +46,7 @@ if {$user == ""} {
 }
 
 
-# Prompt for a password to ssh and scp
+# Check & Prompt for a password to ssh and scp
 set rootpasswd [lindex $argv 2]
 if {$rootpasswd == ""} {
   stty -echo
@@ -98,17 +98,16 @@ expect {
 set timeout -1
 
 # A server configuration script is essential. Lets make sure that we can properly locate and SCP one.
-set found 0;
 set server_config_script [lindex $argv 3]
 
 # Were gonna loop until we've be supplied a valid file
-while { $found != 1} {
+while { 1 } {
 
   # Check if file exsists
   if [file exists $server_config_script] {
-    # File exsist -> SCP
+    # File exsist -> SCP and break out of infinite loop
     set running [copyfile "$server_config_script" "$IP" "$user" "$rootpasswd"]
-    set found 1
+    break
 
   } else {
     # Prompt for a valid file
