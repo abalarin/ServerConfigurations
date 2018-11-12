@@ -12,7 +12,7 @@ Usage: $./ServerSetupAutomater.exp <host> <ssh_user> <ssh_password> <config_scri
 
 Example1: $./ServerSetupAutomater.exp 11.111.11.11
 
-Example2: $./ServerSetupAutomater.exp 11.111.11.11 root password UbuntuConfig.sh`
+Example2: $./ServerSetupAutomater.exp 11.111.11.11 root password UbuntuConfig.sh
 ```
 
 ### `ServerSetupAutomater.exp` is just a script loader
