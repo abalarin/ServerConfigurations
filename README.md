@@ -29,10 +29,8 @@ Its basically just allowing you to to start configuration from your local machin
 * Line 120 - 127: Prompt and SCP aliases if desired
 * Line 133 - 157: SSH into host and run the `Server Config Script`
 
-## Thats the whole script!
+## Thats it!
 
-You could totally build off of this and add expects to automate your own bash scripts!
+You could totally build off of this and add expects to completely automate your own bash scripts!
 
-I tried to keep this as generic and simple to have as much flexibility as possible.
-
-As it stands this only supports the loading of 1 setup script and 1 aliases file. Hopefully this can get updated in the future to load more setup scripts and increase error handling!
+As it stands this only supports the loading of 1 setup script and 1 alias file. Hopefully this can get updated in the future to load more setup scripts and increase error handling!
