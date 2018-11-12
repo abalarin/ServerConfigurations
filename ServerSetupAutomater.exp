@@ -1,6 +1,6 @@
 #!/usr/bin/expect -f
 
-# Usage ./ServerSetupAutomater.exp <host_ip> <ssh_user>(defaults to root) <user passwd>
+# Usage ./ServerSetupAutomater.exp <host_ip> <ssh_user>(defaults to root) <user passwd> <your_config_script.sh>
 # Run this script with your ssh 'user' and IP as arguments to auto set the 'IP' and 'user' variables
 
 send "\n ~~~~~~~~~~~ Welcome to the automated Linode setup script! ~~~~~~~~~~~\n\n"
