@@ -17,14 +17,14 @@ Example2: $./ServerSetupAutomater.exp 11.111.11.11 root password UbuntuConfig.sh
 
 ### `ServerSetupAutomater.exp` is just a script loader
 
-ServerSetupAutomater is not actually modifying any your server configurations!
+ServerSetupAutomater is not actually modifying any of your server configurations!
 
 Its basically just allowing you to to start configuration from your local machine
 
-* It requests login credentials (if not already provided on command line)
-* Test connectivity to host
+* Line 12 - 58: Requests login credentials (if not already provided on command line)
+* Line 60 - 95: Tests connectivity to host
 * * If connection can't be established - exit script
-* Prompt for a `Server Config Script` (if not already provided on command line). You could user `UbuntuConfig.sh`
-* SCP `Server Config Script` to hostname
-* Prompt and SCP aliases if desired
-* SSH into host and run the `Server Config Script`
+* Line 101 - 118: Prompt for a `Server Config Script` (if not already provided on command line). You could use `UbuntuConfig.sh`
+* Line 101 - 118: SCP `Server Config Script` to hostname
+* Line 120 - 127: Prompt and SCP aliases if desired
+* Line 133 - 157: SSH into host and run the `Server Config Script`
