@@ -25,6 +25,14 @@ Its basically just allowing you to to start configuration from your local machin
 * Line 60 - 95: Tests connectivity to host
 * * If connection can't be established - exit script
 * Line 101 - 118: Prompt for a `Server Config Script` (if not already provided on command line). You could use `UbuntuConfig.sh`
-* Line 101 - 118: SCP `Server Config Script` to hostname
+* Line 101 - 118: SCP `Server Config Script` to host
 * Line 120 - 127: Prompt and SCP aliases if desired
 * Line 133 - 157: SSH into host and run the `Server Config Script`
+
+###Thats the whole script!
+
+You could totally build off of this and add expects to automate your own bash scripts!
+
+I tried to keep this as generic and simple to have as much flexibility as possible.
+
+As it stands this only supports the loading of 1 setup script and 1 aliases file. Hopefully this can get updated in the future to load more setup scripts and increase error handling!
