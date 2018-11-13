@@ -39,4 +39,6 @@ As it stands this only supports the loading of 1 setup script and 1 alias file. 
 
 ### Resources
 
-A Handy Dandy [guide](https://likegeeks.com/expect-command/) on expect scripting
+A Handy Dandy [guide](https://likegeeks.com/expect-command/) on expect scripting.
+
+Another [guide](https://gist.github.com/Fluidbyte/6294378) on expect diving into the nitty grittys a bit more.
