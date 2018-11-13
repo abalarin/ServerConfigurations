@@ -4,6 +4,7 @@ This is a way to automate your server configuration
 ## Getting Started - ServerSetupAutomater
 
 Install expect mac: `brew install expect`
+
 Instal expect Ubunutu: `apt-get install expect`
 
 To start the automater run `ServerSetupAutomater.exp`
