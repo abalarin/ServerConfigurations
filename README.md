@@ -34,3 +34,7 @@ Its basically just allowing you to to start configuration from your local machin
 You could totally build off of this and add expects to completely automate your own bash scripts!
 
 As it stands this only supports the loading of 1 setup script and 1 alias file. Hopefully this can get updated in the future to load more setup scripts and increase error handling!
+
+### Resources
+
+A Handy Dandy [guide](https://likegeeks.com/expect-command/) on expect scripting 
