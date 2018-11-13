@@ -3,7 +3,13 @@
 echo "    ~~~~ Running Ubuntu18LTS configuration ~~~~"
 
 #Update
-sudo apt-get update && sudo apt-get upgrade
+sudo apt-get update
+
+echo -p "Would you like to perform sys upgrade? [y/n]" response
+if [[ "$response" == "yes" ]] || [[ "$response" == "Yes" ]] || [[ "$response" == "y" ]] || [[ "$response" == "Y" ]]
+then
+  sudo apt-get upgrade
+fi
 
 # Set date/Time to EST
 sudo timedatectl set-timezone EST

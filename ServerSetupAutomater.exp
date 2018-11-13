@@ -91,6 +91,9 @@ expect {
     puts "\n ~~ Uhoh looks like there was an issue connecting to $IP. Please try again. ~~ \n"
     exit
   }
+  "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!" {
+    exit
+  }
 }
 # ----------- END of Validation -----------
 
