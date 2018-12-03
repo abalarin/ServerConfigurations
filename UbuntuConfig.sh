@@ -5,7 +5,7 @@ echo "    ~~~~ Running Ubuntu18LTS configuration ~~~~"
 #Update
 sudo apt-get update
 
-echo -p "Would you like to perform sys upgrade? [y/n]" response
+read -p "Would you like to perform sys upgrade? [y/n]" response
 if [[ "$response" == "yes" ]] || [[ "$response" == "Yes" ]] || [[ "$response" == "y" ]] || [[ "$response" == "Y" ]]
 then
   sudo apt-get upgrade
