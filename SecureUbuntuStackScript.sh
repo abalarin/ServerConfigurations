@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# <UDF name="username" Label="Create New User" example="username" default="austin"/>
-# <UDF name="password" Label="New User Password" default="linode!"/>
+# <UDF name="username" Label="Create New User" example="username" default=""/>
+# <UDF name="password" Label="New User Password" default=""/>
 # <UDF name="hostname" Label="Change Hostname" example="localhost" default=""/>
 # <UDF name="sshkey" Label="Add GPG Public Key" example="AAAAB3NzaC1yc2EAAAADAQABAAACAQCdZBMH9fKg995K" default="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCdZBMH9fKg995Kt0cbpRGtg2LLNC1HPjVkL8njhonNMX0RsvmNUHBRbFoAPe240F5s4eSC7+Gi5SGx1218eGJl9olZ1hAvCBAiRerKiSSz7Q03vQqpy34fFdZ3rEhqHRD6DLUjH3aCUSXik5a9eMCFgUKhrZMQart21HHnyyNL+Uat2dRh1klZLzd3V6wYN2Nc9ZnD5CblY5XHA4Y4HS6AxCXaJ1I7jUbdkFla77WZhGszYLJ8SXrai5LHfn7BuN4dIhcxfxGQ1t1ig4cd5HKt5Xc65SPlKWinxvpbnhtBocU9GXJnCnYKAXppGWPckzyzisGaycnmRcp0vbnOLsaPK9cmjUWHzqS54079EEuSP342LOXdPAsnNfkUOgP2yFlzjgyvqCl+12zzO5WshvMz4e5L8wU1IZvOf+sdlymE3ulWcNllgDoUOkfmpHFIvlbEFyQlLjT05/hTeIKe1MBw45xDMd5DzLhe14Qzy4lVkSt/WFVYbF1wIuOg8/af2c9kdgVlLgVgJnAppMElPl+uLHqfn/rqfIFNGg8jAL87KxUbUB+f8GnGPqCUrFGnsYagGTdTsNIjzkrOXatOw9K12jXpx9fi+QFz+JPSkEBUSJCmZqqKyUS63jsXrCReaejfd8Je1yoGXYmqMzV3IMcDhJrsYypBFKG8hg98FURSGw== abalarin@Austins-MacBook-Pro.local"/>
 # <UDF name="sysupgrade" Label="System Upgrade?" oneOf="Yes,No" default="No" />
